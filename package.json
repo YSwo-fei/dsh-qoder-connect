@@ -1,0 +1,68 @@
+{
+  "name": "dsh-qoder-connect",
+  "displayName": "DSH Qoder CN Connect",
+  "description": "将 Qoder CN 桌面 App 包含的模型自动接入 DeepSeek Harness — bring Qoder CN desktop models into DeepSeek Harness with zero configuration.",
+  "version": "0.5.0",
+  "type": "module",
+  "license": "MIT",
+  "author": "YSwo-fei",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YSwo-fei/dsh-qoder-connect.git"
+  },
+  "homepage": "https://github.com/YSwo-fei/dsh-qoder-connect#readme",
+  "bugs": {
+    "url": "https://github.com/YSwo-fei/dsh-qoder-connect/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "qoder",
+    "qoder-cn",
+    "model-provider",
+    "openai-compatible"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "main": "lib/index.js",
+  "icon": "icon.svg",
+  "bin": {
+    "dsh-qoder-connect": "lib/bin.js"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "data",
+    "locale",
+    "docs",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings-plugins"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-llm-pi-ai": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-web": "0.2.0-rc.2",
+    "@deepseek-ai/schemastery": "^3.18.2",
+    "@earendil-works/pi-ai": "^0.87.1"
+  }
+}

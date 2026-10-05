@@ -1,0 +1,27 @@
+# 凭据与运行时状态 —— 绝不入库
+.qoder-auth.json
+.qoder-account.json
+*.qoder-auth.json
+auth.v1.dat
+.cache/
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+*.orig
+
+# 依赖
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+
+# wasm_prelude.mjs 已把 WASM 二进制以 base64 内嵌，这个独立文件是冗余的
+lib/qoder_auth_wasm_bg.wasm
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

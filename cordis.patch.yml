@@ -1,0 +1,23 @@
+# Register the Qoder CN provider without changing the profile's current
+# default model. The plugin reuses the Qoder CN desktop app's sign-in
+# (auth.v1.dat is decrypted locally); no separate OAuth flow is started.
+- insert:
+    - id: llm-qoder
+      name: dsh-qoder-connect
+
+# Point the web seam's search half at this plugin's provider.
+#
+# The base layer ships `searchProvider: deepseek-official`; the seam resolves a
+# *configured* id first and fails with WEB_PROVIDER_CONFIGURED_UNAVAILABLE when
+# that provider is registered but unusable — which is the case whenever
+# $DEEPSEEK_API_KEY is unset. Without this row the Qoder search provider would
+# register but never be selected.
+#
+# A patch replaces the whole `config`, so `fetchProvider` is restated. This is a
+# bundle layer: the profile's own cordis.patch.yml is applied after it and wins,
+# so a deployment that wants a different search provider (or the DeepSeek one
+# back) only has to set `searchProvider` there.
+- id: web
+  config:
+    searchProvider: qoder
+    fetchProvider: http
